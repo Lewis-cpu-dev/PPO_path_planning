@@ -7,11 +7,13 @@ from typing import Any
 from IPython import display
 import copy
 import torch
+
 class RandomObstaclesEnv(gym.Env):
-    def __init__(self, obstacle_x_count_range=(1,5), space_size=(30, 30), obs_dist=5, x_step_range=(6,9),y_step_range=(7,10),half_obstacle_size_range=(1,2),obs_format = 'array'):
+    def __init__(self, seed=10000, obstacle_x_count_range=(1,5), space_size=(30, 30), obs_dist=5, x_step_range=(6,9),y_step_range=(7,10),half_obstacle_size_range=(1,2),obs_format = 'array'):
         #space_size is the size of space array, so the first term is the number of rows (length on y), the second term is the number of columns (length on x)
         #x_step is the distance between the centers of two columns
         super(RandomObstaclesEnv, self).__init__()
+        
         self.step_count=0
         self.obstacle_x_count_range = obstacle_x_count_range
         self.action_dict={'up':0,'down':1,'left':2,'right':3,'vertical':4, 'stop':5}
@@ -27,6 +29,7 @@ class RandomObstaclesEnv(gym.Env):
         self.action_recorder = []
         self.action_space = gym.spaces.Discrete(6)  # Example action space (up, down, left, right,vertical)
         self.obs_format = 'array'
+        self.episode_reward = 0
         if self.obs_format == 'array':
             self.observation_space = gym.spaces.Box(low=0,high=max(self.space_size[0],self.space_size[1]),shape=(4,space_size[0],space_size[1]))
         elif self.obs_format == 'dict':
@@ -34,17 +37,13 @@ class RandomObstaclesEnv(gym.Env):
                 {
                 'position': gym.spaces.MultiDiscrete([space_size[0],space_size[1]]),
                 'map': gym.spaces.MultiBinary([3,space_size[0], space_size[1]])#gym.spaces.Dict({'map':map_space})  # Example observation space
-                }
-            )
+                })
         
-        self.seed = 10000
+        self.seed = seed
         self.reset()
-    
-    
-    
         a=1
         
-    def reset(self): 
+    def reset(self, seed=None, options=None): 
         np.random.seed(self.seed)
         self.obstacles = []
         self.half_obstacle_size=np.random.randint(self.half_obstacle_size_range[0],self.half_obstacle_size_range[1]) #half of the column size
@@ -185,8 +184,14 @@ class RandomObstaclesEnv(gym.Env):
         return np.count_nonzero(self.map[0])/self.map[0].size
         
     def get_uninspected_surfaces(self):
-        return len(self.surface_list[0])+len(self.surface_list[1])+len(self.surface_list[2])+len(self.surface_list[3])   
+        return len(self.surface_list[0])+len(self.surface_list[1])+len(self.surface_list[2])+len(self.surface_list[3])  
+    
+
     def step(self, action):
+        """add a variable
+            Args:
+                self.episode_reward: to get accumulative rewards
+        """
         self.state_recorder.append(self.state)
         self.action_recorder.append(action)
         self.step_count+=1 
@@ -230,15 +235,29 @@ class RandomObstaclesEnv(gym.Env):
         self.map[3,0,1]=new_position[1]
         self.position = new_position
         if self.obs_format == 'array':
-            self.state = self.map.copy()#torch.tensor(self.map.copy())
+            self.state = self.map.copy() #torch.tensor(self.map.copy())
         elif self.obs_format == 'dict':
             self.state={'position':new_position, 'map':self.map[0:3]}
         self.reward=-1.0+new_known_pixels+new_inspected_columns*10+penalty
-        terminated=True if action == self.action_dict['stop'] else False
+        self.episode_reward += self.reward
+        if action == self.action_dict['stop']:  # output info when episode ends
+            terminated = True
+            info = {
+                "info": {
+                    # "r": float(self.episode_reward),
+                    # "l": self.step_count
+                }
+            }
+            self.episode_reward = 0
+            self.step_count = 0
+        else:
+            terminated = False
+            info = {}
         truncated=True if self.step_count>10000000 else False
-        info={}
+
         self.rendered_frames.append([self.traj_record.copy(),self.map[0].copy(),self.map[1].copy(),self.map[2].copy()])
-        return self.state, self.reward, terminated, truncated, info
+        return self.state, self.reward, terminated, truncated, info  
+        # return self.state, self.reward, terminated, info
 
     def render(self, mode='human'):
         if mode == 'human':
@@ -281,7 +300,7 @@ class RandomObstaclesEnv(gym.Env):
             # Implement other rendering modes if needed
             pass
 
-    def greedy(self):
+    def greedy(self):  # deep copy for this self module to simulate the next step
         reward_list=[]
         for key,action in self.action_dict.items():
             dummy = copy.deepcopy(self)

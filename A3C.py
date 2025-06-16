@@ -11,7 +11,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 UPDATE_GLOBAL_ITER = 10
 GAMMA = 0.99
-MAX_EP = 300000
+MAX_EP = 200
 
 env = RandomObstaclesEnv()
 N_S = env.observation_space.shape
@@ -35,7 +35,9 @@ class Worker(mp.Process):
             buffer_s, buffer_a, buffer_r = [], [], []
             ep_r = 0.
             action_list = []
-            while True:
+            max_steps_per_ep = 200000
+            step_in_ep = 0
+            while True:                 
                 if self.name == 'w00':
                     pass#self.env.render()
 
@@ -50,12 +52,12 @@ class Worker(mp.Process):
                 buffer_s.append(s)
                 buffer_r.append(r)
 
-                if total_step % UPDATE_GLOBAL_ITER == 0 or done:  # update global and assign to local net
+                if total_step % UPDATE_GLOBAL_ITER == 0 or done or step_in_ep >= max_steps_per_ep:  # update global and assign to local net
                     # sync
                     push_and_pull(self.opt, self.lnet, self.gnet, done, s_, buffer_s, buffer_a, buffer_r, GAMMA)
                     buffer_s, buffer_a, buffer_r = [], [], []
 
-                    if done:  # done and print information
+                    if done or step_in_ep >= max_steps_per_ep:  # done and print information
                         with open('action_file', 'a') as f:
     # Iterate over each element in the list
                             for item in action_list:
@@ -65,6 +67,7 @@ class Worker(mp.Process):
                         break
                 s = s_
                 total_step += 1
+                step_in_ep +=1
         self.res_queue.put(None)
 
 
