@@ -11,7 +11,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 UPDATE_GLOBAL_ITER = 10
 GAMMA = 0.99
-MAX_EP = 200
+MAX_EP = 30000
 
 env = RandomObstaclesEnv()
 N_S = env.observation_space.shape
@@ -35,7 +35,7 @@ class Worker(mp.Process):
             buffer_s, buffer_a, buffer_r = [], [], []
             ep_r = 0.
             action_list = []
-            max_steps_per_ep = 200000
+            max_steps_per_ep = 200
             step_in_ep = 0
             while True:                 
                 if self.name == 'w00':

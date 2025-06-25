@@ -1,0 +1,18 @@
+{"time":"2025-06-25T14:29:41.851002-05:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/wandb/offline-run-20250625_142941-vm0k1rah/logs/debug-core.log"}
+{"time":"2025-06-25T14:29:41.963942-05:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-06-25T14:29:41.964877-05:00","level":"INFO","msg":"stream: created new stream","id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:41.964933-05:00","level":"INFO","msg":"stream: started","id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:41.965225-05:00","level":"INFO","msg":"handler: started","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:41.965725-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:41.966021-05:00","level":"INFO","msg":"sender: started","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:41.975716-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-25T14:29:45.050674-05:00","level":"INFO","msg":"stream: closing","id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:45.051093-05:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-25T14:29:45.051161-05:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-25T14:29:52.126647-05:00","level":"WARN","msg":"tensorboard: no root directory","error":"timed out after 10s"}
+{"time":"2025-06-25T14:29:52.127792-05:00","level":"INFO","msg":"tensorboard: tracking new log directory","rootDir":{},"logDir":"LocalOrCloudPath(LocalPath=\"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750879776\")","namespace":""}
+{"time":"2025-06-25T14:29:52.131559-05:00","level":"INFO","msg":"tensorboard: saving file","fileLocation":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750879776/events.out.tfevents.1750879782.Rztys-MacBook-Air-3.local.87621.0","runPath":"runs/Inspection__ppo_for_planning__1__1750879776/events.out.tfevents.1750879782.Rztys-MacBook-Air-3.local.87621.0"}
+{"time":"2025-06-25T14:29:52.152002-05:00","level":"INFO","msg":"handler: closed","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:52.152016-05:00","level":"INFO","msg":"sender: closed","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:52.152224-05:00","level":"INFO","msg":"writer: Close: closed","stream_id":"vm0k1rah"}
+{"time":"2025-06-25T14:29:52.152288-05:00","level":"INFO","msg":"stream: closed","id":"vm0k1rah"}

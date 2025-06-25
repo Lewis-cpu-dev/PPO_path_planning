@@ -240,26 +240,15 @@ class RandomObstaclesEnv(gym.Env):
             self.state={'position':new_position, 'map':self.map[0:3]}
         self.reward=-1.0+new_known_pixels+new_inspected_columns*10+penalty
         self.episode_reward += self.reward
-        if action == self.action_dict['stop']:  # output info when episode ends
-            terminated = True
-            info = {
-                "info": {
-                    # "r": float(self.episode_reward),
-                    # "l": self.step_count
-                }
-            }
-            self.episode_reward = 0
-            self.step_count = 0
-        else:
-            terminated = False
-            info = {}
+        terminated = True if action == self.action_dict['stop'] else False  # output info when episode ends
+        info = {}
         truncated=True if self.step_count>10000000 else False
 
         self.rendered_frames.append([self.traj_record.copy(),self.map[0].copy(),self.map[1].copy(),self.map[2].copy()])
         return self.state, self.reward, terminated, truncated, info  
         # return self.state, self.reward, terminated, info
 
-    def render(self, mode='human'):
+    def render(self, mode='human'):  # demo function
         if mode == 'human':
             display.clear_output(wait=True)
             fig, axs = plt.subplots(1, 3)   

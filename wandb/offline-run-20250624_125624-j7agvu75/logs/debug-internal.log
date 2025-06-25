@@ -1,0 +1,18 @@
+{"time":"2025-06-24T12:56:25.598376-05:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/wandb/offline-run-20250624_125624-j7agvu75/logs/debug-core.log"}
+{"time":"2025-06-24T12:56:25.916287-05:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-06-24T12:56:25.916541-05:00","level":"INFO","msg":"stream: created new stream","id":"j7agvu75"}
+{"time":"2025-06-24T12:56:25.916579-05:00","level":"INFO","msg":"stream: started","id":"j7agvu75"}
+{"time":"2025-06-24T12:56:25.916616-05:00","level":"INFO","msg":"handler: started","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:25.916661-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:25.916704-05:00","level":"INFO","msg":"sender: started","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:25.924729-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-24T12:56:36.120108-05:00","level":"WARN","msg":"tensorboard: no root directory","error":"timed out after 10s"}
+{"time":"2025-06-24T12:56:36.120432-05:00","level":"INFO","msg":"tensorboard: tracking new log directory","rootDir":{},"logDir":"LocalOrCloudPath(LocalPath=\"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750787772\")","namespace":""}
+{"time":"2025-06-24T12:56:36.120926-05:00","level":"INFO","msg":"tensorboard: saving file","fileLocation":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750787772/events.out.tfevents.1750787786.wirelessprv-10-192-128-41.near.illinois.edu.74980.0","runPath":"runs/Inspection__ppo_for_planning__1__1750787772/events.out.tfevents.1750787786.wirelessprv-10-192-128-41.near.illinois.edu.74980.0"}
+{"time":"2025-06-24T12:56:40.025535-05:00","level":"INFO","msg":"stream: closing","id":"j7agvu75"}
+{"time":"2025-06-24T12:56:40.02572-05:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-24T12:56:40.025889-05:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-24T12:56:40.037178-05:00","level":"INFO","msg":"handler: closed","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:40.037228-05:00","level":"INFO","msg":"writer: Close: closed","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:40.037281-05:00","level":"INFO","msg":"sender: closed","stream_id":"j7agvu75"}
+{"time":"2025-06-24T12:56:40.037559-05:00","level":"INFO","msg":"stream: closed","id":"j7agvu75"}

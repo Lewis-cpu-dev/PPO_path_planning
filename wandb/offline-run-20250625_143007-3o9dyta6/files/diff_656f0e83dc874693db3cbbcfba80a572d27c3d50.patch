@@ -1,0 +1,45 @@
+diff --git a/.DS_Store b/.DS_Store
+index 9a526d9..8bada70 100644
+Binary files a/.DS_Store and b/.DS_Store differ
+diff --git a/ppo_for_planning.py b/ppo_for_planning.py
+index e5f5100..2a005ad 100644
+--- a/ppo_for_planning.py
++++ b/ppo_for_planning.py
+@@ -31,13 +31,13 @@ def parse_args():
+         help="the learning rate of the optimizer")
+     parser.add_argument("--seed", type=int, default=1,
+         help="seed of the experiment")
+-    parser.add_argument("--total-timesteps", type=int, default=25000,
++    parser.add_argument("--total-timesteps", type=int, default=250000,
+         help="total timesteps of the experiments")
+     parser.add_argument("--torch-deterministic", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+         help="if toggled, `torch.backends.cudnn.deterministic=False`")
+     parser.add_argument("--cuda", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+         help="if toggled, cuda will be enabled by default")
+-    parser.add_argument("--track", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
++    parser.add_argument("--track", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=False,
+         help="if toggled, this experiment will be tracked with Weights and Biases")
+     parser.add_argument("--wandb-project-name", type=str, default="ppo-implementation-details",
+         help="the wandb's project name")
+@@ -56,7 +56,7 @@ def parse_args():
+     # Algorithm specific arguments
+     parser.add_argument("--num-envs", type=int, default=2,
+         help="the number of parallel game environments")
+-    parser.add_argument("--num-steps", type=int, default=128,
++    parser.add_argument("--num-steps", type=int, default=512,
+         help="the number of steps to run in each environment per policy rollout")
+     parser.add_argument("--anneal-lr", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+         help="Toggle learning rate annealing for policy and value networks")
+@@ -285,7 +285,8 @@ if __name__ == "__main__":
+                     old_approx_kl = (-logratio).mean()
+                     approx_kl = ((ratio - 1) - logratio).mean()
+                     clipfracs += [((ratio - 1.0).abs() > args.clip_coef).float().mean().item()]
+-
++                print(ratio)
++                print("------------------------------------/n/n/n")
+                 mb_advantages = b_advantages[mb_inds]  # Normalize advantages
+                 if args.norm_adv:
+                     mb_advantages = (mb_advantages - mb_advantages.mean()) / (mb_advantages.std() + 1e-8)
+diff --git a/runs/.DS_Store b/runs/.DS_Store
+index 292b22f..e278707 100644
+Binary files a/runs/.DS_Store and b/runs/.DS_Store differ

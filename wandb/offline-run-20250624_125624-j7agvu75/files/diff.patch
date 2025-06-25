@@ -1,0 +1,28 @@
+diff --git a/.DS_Store b/.DS_Store
+index 9a526d9..08c2b37 100644
+Binary files a/.DS_Store and b/.DS_Store differ
+diff --git a/ppo_for_planning.py b/ppo_for_planning.py
+index e5f5100..94a8797 100644
+--- a/ppo_for_planning.py
++++ b/ppo_for_planning.py
+@@ -37,7 +37,7 @@ def parse_args():
+         help="if toggled, `torch.backends.cudnn.deterministic=False`")
+     parser.add_argument("--cuda", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+         help="if toggled, cuda will be enabled by default")
+-    parser.add_argument("--track", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
++    parser.add_argument("--track", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=False,
+         help="if toggled, this experiment will be tracked with Weights and Biases")
+     parser.add_argument("--wandb-project-name", type=str, default="ppo-implementation-details",
+         help="the wandb's project name")
+@@ -56,7 +56,7 @@ def parse_args():
+     # Algorithm specific arguments
+     parser.add_argument("--num-envs", type=int, default=2,
+         help="the number of parallel game environments")
+-    parser.add_argument("--num-steps", type=int, default=128,
++    parser.add_argument("--num-steps", type=int, default=512,
+         help="the number of steps to run in each environment per policy rollout")
+     parser.add_argument("--anneal-lr", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+         help="Toggle learning rate annealing for policy and value networks")
+diff --git a/runs/.DS_Store b/runs/.DS_Store
+index 292b22f..06b6758 100644
+Binary files a/runs/.DS_Store and b/runs/.DS_Store differ

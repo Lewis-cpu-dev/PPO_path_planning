@@ -286,7 +286,6 @@ if __name__ == "__main__":
                     approx_kl = ((ratio - 1) - logratio).mean()
                     clipfracs += [((ratio - 1.0).abs() > args.clip_coef).float().mean().item()]
                 print(ratio)
-                print(ratio[0],ratio[1])
                 print("------------------------------------/n/n/n")
                 mb_advantages = b_advantages[mb_inds]  # Normalize advantages
                 if args.norm_adv:

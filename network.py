@@ -5,6 +5,9 @@ from utils import v_wrap, set_init, push_and_pull, record, SharedAdam
 from torch.distributions.categorical import Categorical
 class Net(nn.Module):
     def __init__(self, s_dim, a_dim):
+        '''
+            directly works as agent
+        '''
         super(Net, self).__init__()
         self.s_dim = s_dim
         self.a_dim = a_dim

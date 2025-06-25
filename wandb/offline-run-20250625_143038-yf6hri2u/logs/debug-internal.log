@@ -1,0 +1,11 @@
+{"time":"2025-06-25T14:30:38.67617-05:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/wandb/offline-run-20250625_143038-yf6hri2u/logs/debug-core.log"}
+{"time":"2025-06-25T14:30:38.792711-05:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-06-25T14:30:38.793272-05:00","level":"INFO","msg":"stream: created new stream","id":"yf6hri2u"}
+{"time":"2025-06-25T14:30:38.79338-05:00","level":"INFO","msg":"stream: started","id":"yf6hri2u"}
+{"time":"2025-06-25T14:30:38.794036-05:00","level":"INFO","msg":"handler: started","stream_id":"yf6hri2u"}
+{"time":"2025-06-25T14:30:38.794057-05:00","level":"INFO","msg":"sender: started","stream_id":"yf6hri2u"}
+{"time":"2025-06-25T14:30:38.794277-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"yf6hri2u"}
+{"time":"2025-06-25T14:30:38.840402-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-25T14:30:49.120607-05:00","level":"WARN","msg":"tensorboard: no root directory","error":"timed out after 10s"}
+{"time":"2025-06-25T14:30:49.121768-05:00","level":"INFO","msg":"tensorboard: tracking new log directory","rootDir":{},"logDir":"LocalOrCloudPath(LocalPath=\"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750879834\")","namespace":""}
+{"time":"2025-06-25T14:30:49.13195-05:00","level":"INFO","msg":"tensorboard: saving file","fileLocation":"/Users/rzty/Regular/RLpathplanning/RLPathPlanning/runs/Inspection__ppo_for_planning__1__1750879834/events.out.tfevents.1750879839.Rztys-MacBook-Air-3.local.87870.0","runPath":"runs/Inspection__ppo_for_planning__1__1750879834/events.out.tfevents.1750879839.Rztys-MacBook-Air-3.local.87870.0"}
